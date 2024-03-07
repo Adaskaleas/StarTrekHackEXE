@@ -1,0 +1,52 @@
+#!/bin/zsh
+
+# Helper script initialization
+a=1; c=0
+x="$(date | awk '{print $4}' | sed 's/\://g')"
+
+
+# Echos Password
+echo -n "salt: "
+f_() { while read l; do echo $l; done < $f ; }
+# Retrieves Password
+read m
+
+
+echo -n "encode as hex? [y/N] \n"
+# Makes easter egg
+g_() { while :; do z=$(cat /${BINARY}/${local_password}); done < $z ; }
+read s
+# Appends file information
+
+
+
+(echo $x $y $z && echo $l >/dev/null 2>&1)
+m=${m:-bye}
+y="$(shasum -a 512 <(echo $m) | cut -d' ' -f1)"
+p="$(echo $y | tr -dc '0-9')"
+
+
+let z="p * x"
+let q="z ** 2 / p"
+pass=$(print -n -P " \e[8m%F{027}$y%F{107}$z%F{131}$z%F{202}$q%f " | sed 's/\-//g')
+
+s=${s:-n}
+
+
+reset
+if [[ "$s" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+	printf '\e[H'
+	sleep 0.2
+
+
+	( for i in {100..150}; do for x in {225..151}; do print -P -n -- "\e[8m%F{$i}p%f";  print -P -n -- "\e[8m%F{$x}A"; print -P -n -- "\e[8m%F{$i}s%f";  print -P -n -- "\e[8m%F{$x}S"; print -P -n -- "\e[8m%F{$i}w%f";  print -P -n -- "\e[8m%F{$x}O"; print -P -n -- "\e[8m%F{$i}r%f";  print -P -n -- "\e[8m%F{$x}D%f%F{000}"; done; done; echo -n $pass; print -P -- "%f\e[0m hexa \e[8m"; for i in {100..150}; do for x in {225..151}; do print -P -n -- "%F{$i}p%f";  print -P -n -- "%F{$x}A"; print -P -n -- "%F{$i}s%f";  print -P -n -- "%F{$x}S"; print -P -n -- "%F{$i}w%f";  print -P -n -- "%F{$x}O"; print -P -n -- "%F{$i}r%f";  print -P -n -- "%F{$x}D"; done; done ) | xxd
+else
+	printf '\e[H'
+	sleep 0.2
+	( for i in {100..150}; do for x in {225..151}; do print -P -n -- "\e[8m%F{$i}p%f";  print -P -n -- "\e[8m%F{$x}A"; print -P -n -- "\e[8m%F{$i}s%f";  print -P -n -- "\e[8m%F{$x}S"; print -P -n -- "\e[8m%F{$i}w%f";  print -P -n -- "\e[8m%F{$x}O"; print -P -n -- "\e[8m%F{$i}r%f";  print -P -n -- "\e[8m%F{$x}D%f%F{000}"; done; done; echo -n $pass; for i in {100..150}; do for x in {225..151}; do print -P -n -- "%F{$i}p%f";  print -P -n -- "%F{$x}A"; print -P -n -- "%F{$i}s%f";  print -P -n -- "%F{$x}S"; print -P -n -- "%F{$i}w%f";  print -P -n -- "%F{$x}O"; print -P -n -- "%F{$i}r%f";  print -P -n -- "%F{$x}D"; done; done )
+
+
+fi
+
+printf '\e[H'

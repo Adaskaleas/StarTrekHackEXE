@@ -1,0 +1,77 @@
+#!/bin/zsh
+
+#Copyright Aristotle Daskaleas 2023 -- All rights reserved
+
+home="/Users/736590/Desktop"
+USB="/Volumes/SanDisk"
+gov="College\ Government"
+entre="College\ Entrepreneurship"
+sci="Environmental\ Science"
+food="Foods\ For\ Life"
+comp="Composition\ and\ Literature"
+rand="random"
+
+if test -d /Volumes/SanDisk
+then
+  echo "usb present"
+else
+  echo "usb not present"
+  echo "insert usb and try again"
+  sleep 2
+  exit
+fi
+
+
+#y
+
+echo "start syncing? (y/N)"
+
+while read -r resp
+do
+  if [[ "$resp" =~ ^([yY][eE][sS]|[yY])$ ]]
+  then
+    echo "beginning sync..."
+    break
+  elif [[ "$resp" =~ ^([nN][oO]|[nN])$ ]]
+  then
+    echo "okay buster, exiting..."
+    exit
+  else
+    echo "put a real answer >:("
+  fi
+done
+rsync -avh $home/College\ Government/* $USB/College\ Government/
+rsync -avh $home/College\ Entrepreneurship/* $USB/College\ Entrepreneurship/
+rsync -avh $home/Environmental\ Science/* $USB/Environmental\ Science/
+rsync -avh $home/Personal\ Finance/* $USB/Personal\ Finance/
+rsync -avh $home/Composition\ and\ Literature/* $USB/Composition\ and\ Literature/
+rsync -avh $home/Programming\ Stuff/* $USB/Programming\ Stuff/
+rsync -avh $home/SLCs/* $USB/SLCs/
+rsync -avh $home/functions/* $USB/functions
+rsync -avh $home/PDF\ Files/* $USB/PDF\ Files/
+rsync -avh $home/ugly\ stuff/* $USB/ugly\ stuff/
+rsync -avh $home/random/* $USB/random/
+rsync -avh $home/Art\ I/* $USB/Art\ I/
+rsync -vh $home/* $USB/Desktop\ Files/ | grep -v 'skipping direct'
+find $USB -name '._*' -delete 2>/dev/null
+
+echo "syncing has completed."
+echo "unmount drive? (y/N)"
+
+while read -r uwu
+do
+  if [[ "$uwu" =~ ^([yY][eE][sS]|[yY])$ ]]
+  then
+    diskutil unmountDisk SanDisk
+    sleep 1
+    break
+  elif [[ "$uwu" =~ ^([nN][oO]|[nN])$ ]]
+  then
+    echo "exiting..."
+    sleep 1
+    break
+  else
+    echo "you better put in a REAL y/N answer"
+  fi
+done
+return
